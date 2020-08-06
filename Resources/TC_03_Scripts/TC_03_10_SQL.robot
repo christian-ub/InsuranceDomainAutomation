@@ -18,7 +18,7 @@ Set Variables    # Manual insert of TestCase and Test_Columns
     set test variable    ${TestStatus}    Pending
 
 Ensure only numerical figures are in the sum_insured_total field    # Manual insert of SQL query and handling of variables
-    ${QueryResults} =  Query
+    ${QueryResults} =  row count    select Sum_Insured_Total from InsuranceDataDomain.fact_insurance_cover where Sum_Insured_Total not between 0 and 100000000
     Set test Variable  ${TestValue_Column_1}  ${QueryResults}
     Log  ${TestValue_Column_1}
     set test variable    ${TestStatus}   'Data retrieved'
